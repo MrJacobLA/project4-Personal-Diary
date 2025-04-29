@@ -1,11 +1,13 @@
 import LocalStore from "../LocalStore";
-import Modular from "../Modular";
+import Modal from "../Modal";
 
 function home() {
   return (
     <>
+      <p>My Personal Diary</p>
+
       <LocalStore />
-      <Modular />
+      <Modal />
     </>
   );
 }
