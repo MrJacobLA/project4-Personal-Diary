@@ -5,9 +5,39 @@ import saveIcon from "./icons/save.jpg";
 
 function Modal() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [date, setDate] = useState("");
+  const [title, setTitle] = useState("");
+  const [image, setImage] = useState("");
+  const [thoughts, setThoughts] = useState("");
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+  console.log(title);
+
+  const handleSave = () => {
+    if (!date || !title.trim() || !image.trim() || !thoughts.trim()) {
+      alert("Bitte fülle alle Felder aus!");
+      return;
+    }
+    const newEntry = { date, title, image, thoughts };
+    const existingEntries = JSON.parse(localStorage.getItem("diary")) || [];
+    // console.log("hier meinEintrag:", existingEntries);
+    const match = existingEntries.some((entry) => entry.date === date);
+
+    if (match) {
+      alert("Für diesen Tag existiert schon ein Eintrag.");
+      return;
+    }
+
+    existingEntries.push(newEntry);
+    localStorage.setItem("diary", JSON.stringify(existingEntries));
+
+    setDate("");
+    setTitle("");
+    setImage("");
+    setThoughts("");
+    closeModal();
+  };
 
   return (
     <>
@@ -16,11 +46,11 @@ function Modal() {
         Modal öffnen
       </button> */}
         <button
-          class="button flex items-center md:bg-slate-200 md:px-4 md:py-2 md:rounded"
+          className="button flex items-center md:bg-slate-200 md:px-4 md:py-2 md:rounded"
           onClick={openModal}
         >
           <svg
-            stroke="currentColor"
+            strokeWidth="currentColor"
             fill="currentColor"
             stroke-width="0"
             viewBox="0 0 24 24"
@@ -42,15 +72,35 @@ function Modal() {
               <h2 className="text-center font-bold">New Diary Entry</h2>
               <div className="flex flex-wrap gap-2">
                 Date:
-                <input className="" type="text" placeholder="tt.mm.jjjj" />
+                <input
+                  className=""
+                  type="date"
+                  placeholder="tt.mm.jjjj"
+                  value={date}
+                  onChange={(e) => setDate(e.target.value)}
+                />
               </div>
 
-              <input className="border-black" type="text" placeholder="Title" />
-              <input className="" type="text" placeholder="Image URL" />
+              <input
+                className="border-black"
+                type="text"
+                placeholder="Title"
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+              />
+              <input
+                className=""
+                type="text"
+                placeholder="Image URL"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              />
               <input
                 className=""
                 type="text"
                 placeholder="Write your thoughts..."
+                value={thoughts}
+                onChange={(e) => setThoughts(e.target.value)}
               />
               {/* Cancel-button mit icon mit close-Methode*/}
               <button className="cancelBtn" onClick={closeModal}>
@@ -58,7 +108,7 @@ function Modal() {
                 Cancel
               </button>
               {/* Save-button mit icon braucht noch save-Methode*/}
-              <button className="saveBtn" onClick={closeModal}>
+              <button className="saveBtn" onClick={handleSave}>
                 <img src={saveIcon} alt="Save" className="icon" />
                 Save
               </button>
