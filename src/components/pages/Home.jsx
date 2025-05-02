@@ -21,7 +21,7 @@ function home() {
       <h1 className="text-4xl font-bold text-center mb-8">Personal Diary</h1>
       <Modal />
       {diary.length > 0 ? (
-        <div className="diary-grid">
+        <div className="diary-grid flex gap-2">
           {diary.map((entry, index) => (
             <div key={index}>
               <div>{entry.date}</div>

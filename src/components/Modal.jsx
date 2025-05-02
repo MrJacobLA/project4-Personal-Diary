@@ -54,7 +54,7 @@ function Modal() {
             fill="currentColor"
             stroke-width="0"
             viewBox="0 0 24 24"
-            class="text-5xl"
+            className="text-5xl"
             height="1em"
             width="1em"
             xmlns="http://www.w3.org/2000/svg"
@@ -65,22 +65,22 @@ function Modal() {
           </svg>
           <span class="hidden md:inline">AddPost</span>
         </button>
-
-        {isModalOpen && (
-          <div className="modal">
-            <div className="modal-content">
-              <h2 className="text-center font-bold">New Diary Entry</h2>
-              <div className="flex flex-wrap gap-2">
-                Date:
-                <input
-                  className=""
-                  type="date"
-                  placeholder="tt.mm.jjjj"
-                  value={date}
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </div>
-
+      </div>
+      {isModalOpen && (
+        <div className="modal">
+          <div className="modal-content">
+            <h2 className="text-center font-bold">New Diary Entry</h2>
+            <div className="flex flex-wrap gap-2">
+              Date:
+              <input
+                className=""
+                type="date"
+                placeholder="tt.mm.jjjj"
+                value={date}
+                onChange={(e) => setDate(e.target.value)}
+              />
+            </div>
+            <div>
               <input
                 className="border-black"
                 type="text"
@@ -88,6 +88,8 @@ function Modal() {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
+            </div>
+            <div>
               <input
                 className=""
                 type="text"
@@ -95,6 +97,8 @@ function Modal() {
                 value={image}
                 onChange={(e) => setImage(e.target.value)}
               />
+            </div>
+            <div>
               <input
                 className=""
                 type="text"
@@ -102,20 +106,20 @@ function Modal() {
                 value={thoughts}
                 onChange={(e) => setThoughts(e.target.value)}
               />
-              {/* Cancel-button mit icon mit close-Methode*/}
-              <button className="cancelBtn" onClick={closeModal}>
-                <img src={cancelIcon} alt="Cancel" className="icon" />
-                Cancel
-              </button>
-              {/* Save-button mit icon braucht noch save-Methode*/}
-              <button className="saveBtn" onClick={handleSave}>
-                <img src={saveIcon} alt="Save" className="icon" />
-                Save
-              </button>
             </div>
+            {/* Cancel-button mit icon mit close-Methode*/}
+            <button className="cancelBtn" onClick={closeModal}>
+              <img src={cancelIcon} alt="Cancel" className="icon" />
+              Cancel
+            </button>
+            {/* Save-button mit icon braucht noch save-Methode*/}
+            <button className="saveBtn" onClick={handleSave}>
+              <img src={saveIcon} alt="Save" className="icon" />
+              Save
+            </button>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </>
   );
 }
