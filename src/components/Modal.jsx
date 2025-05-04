@@ -67,7 +67,7 @@ function Modal() {
         </button>
       </div>
       {isModalOpen && (
-        <div className="modal">
+        <div className="modal bg-white p-6  shadow-lg mx-4 ">
           <div className="modal-content">
             <h2 className="text-center font-bold">New Diary Entry</h2>
             <div className="flex flex-wrap gap-2">
@@ -82,7 +82,7 @@ function Modal() {
             </div>
             <div>
               <input
-                className="border-black"
+                className="border-gray-500 w-full p-2 my-2 border rounded "
                 type="text"
                 placeholder="Title"
                 value={title}
@@ -91,7 +91,7 @@ function Modal() {
             </div>
             <div>
               <input
-                className=""
+                className="border-gray-500 w-full p-2 my-2 border rounded"
                 type="text"
                 placeholder="Image URL"
                 value={image}
@@ -100,23 +100,26 @@ function Modal() {
             </div>
             <div>
               <input
-                className=""
+                className="border-gray-500 w-full p-2  my-2 border rounded"
+                maxlength="500"
                 type="text"
                 placeholder="Write your thoughts..."
                 value={thoughts}
                 onChange={(e) => setThoughts(e.target.value)}
               />
             </div>
-            {/* Cancel-button mit icon mit close-Methode*/}
-            <button className="cancelBtn" onClick={closeModal}>
-              <img src={cancelIcon} alt="Cancel" className="icon" />
-              Cancel
-            </button>
-            {/* Save-button mit icon braucht noch save-Methode*/}
-            <button className="saveBtn" onClick={handleSave}>
-              <img src={saveIcon} alt="Save" className="icon" />
-              Save
-            </button>
+            <div className="flex justify-center gap-2">
+              {/* Cancel-button mit icon mit close-Methode*/}
+              <button className="cancelBtn " onClick={closeModal}>
+                <img src={cancelIcon} alt="Cancel" className="icon" />
+                Cancel
+              </button>
+              {/* Save-button mit icon braucht noch save-Methode*/}
+              <button className="saveBtn" onClick={handleSave}>
+                <img src={saveIcon} alt="Save" className="icon" />
+                Save
+              </button>
+            </div>
           </div>
         </div>
       )}

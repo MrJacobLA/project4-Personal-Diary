@@ -21,22 +21,38 @@ function home() {
       <h1 className="text-4xl font-bold text-center mb-8">Personal Diary</h1>
       <Modal />
       {diary.length > 0 ? (
-        <div className="diary-grid flex gap-2">
+        <div className="diary-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {diary.map((entry, index) => (
-            <div key={index}>
-              <div>{entry.date}</div>
-              <div>{entry.title}</div>
-              <img src={entry.image} alt="Kein Bild hier" />
-              <div>{entry.thoughts}</div>
-              <button onClick={() => deleteEntry(index)}>
-                Eintrag löschen
-              </button>{" "}
-              {/* Button zum Löschen */}
+            <div
+              key={index}
+              className="flex flex-col mx-auto items-start   rounded-lg  bg-slate-200 w-[300px] cursor-pointer"
+            >
+              <div className="p-4">{entry.date}</div>
+              <div className="text-lg md:text-xl font-bold p-4">
+                {entry.title}
+              </div>
+              <img
+                src={entry.image}
+                alt="Kein Bild hier"
+                className="h-[200px] w-full rounded-b-lg object-cover"
+              />
+              <div className="p-4">{entry.thoughts}</div>
+              <div className=" w-full flex justify-center ">
+                <button
+                  onClick={() => deleteEntry(index)}
+                  className="cancelBtn2 "
+                >
+                  Eintrag löschen
+                </button>{" "}
+                {/* Button zum Löschen */}
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>Keine Tagebucheinträge vorhanden. Füge welche hinzu!</p> // Fallback
+        <div className="m-10">
+          <p>Keine Tagebucheinträge vorhanden. Füge welche hinzu!</p>
+        </div> // Fallback
       )}
     </>
   );
