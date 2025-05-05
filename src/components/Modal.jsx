@@ -3,7 +3,7 @@ import "./modal.css";
 import cancelIcon from "./icons/cancel.jpg";
 import saveIcon from "./icons/save.jpg";
 
-function Modal() {
+function Modal({ diary, setDiary }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [date, setDate] = useState("");
   const [title, setTitle] = useState("");
@@ -30,13 +30,17 @@ function Modal() {
     }
 
     existingEntries.push(newEntry);
-    localStorage.setItem("diary", JSON.stringify(existingEntries));
+    // localStorage.setItem("diary", JSON.stringify(existingEntries));
 
     setDate("");
     setTitle("");
     setImage("");
     setThoughts("");
     closeModal();
+    // window.location.reload();
+    const updated = [newEntry, ...diary];
+    localStorage.setItem("diary", JSON.stringify(updated));
+    setDiary(updated);
   };
 
   return (
@@ -50,7 +54,7 @@ function Modal() {
           onClick={openModal}
         >
           <svg
-            strokeWidth="currentColor"
+            stroke="currentColor"
             fill="currentColor"
             stroke-width="0"
             viewBox="0 0 24 24"
@@ -63,7 +67,7 @@ function Modal() {
             <path d="M17 19.22H5V7h7V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-7h-2v7.22z"></path>
             <path d="M19 2h-2v3h-3c.01.01 0 2 0 2h3v2.99c.01.01 2 0 2 0V7h3V5h-3V2zM7 9h8v2H7zM7 12v2h8v-2h-3zM7 15h8v2H7z"></path>
           </svg>
-          <span class="hidden md:inline">AddPost</span>
+          <span className="hidden md:inline">AddPost</span>
         </button>
       </div>
       {isModalOpen && (
@@ -99,14 +103,16 @@ function Modal() {
               />
             </div>
             <div>
-              <input
+              <textarea
                 className="border-gray-500 w-full p-2  my-2 border rounded"
                 maxlength="500"
+                rows="4"
+                cols="40"
                 type="text"
                 placeholder="Write your thoughts..."
                 value={thoughts}
                 onChange={(e) => setThoughts(e.target.value)}
-              />
+              ></textarea>
             </div>
             <div className="flex justify-center gap-2">
               {/* Cancel-button mit icon mit close-Methode*/}

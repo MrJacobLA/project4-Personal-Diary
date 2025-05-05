@@ -5,8 +5,8 @@ function home() {
   const [diary, setDiary] = useState([]);
 
   useEffect(() => {
-    const localStorageEntry = JSON.parse(localStorage.getItem("diary")) || [];
-    setDiary(localStorageEntry);
+    const localStorageData = JSON.parse(localStorage.getItem("diary")) || [];
+    setDiary(localStorageData);
   }, []);
   console.log("diary", diary);
 
@@ -19,7 +19,7 @@ function home() {
   return (
     <>
       <h1 className="text-4xl font-bold text-center mb-8">Personal Diary</h1>
-      <Modal />
+      <Modal diary={diary} setDiary={setDiary} />
       {diary.length > 0 ? (
         <div className="diary-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
           {diary.map((entry, index) => (
@@ -50,9 +50,9 @@ function home() {
           ))}
         </div>
       ) : (
-        <div className="m-10">
-          <p>Keine Tagebucheinträge vorhanden. Füge welche hinzu!</p>
-        </div> // Fallback
+        <p className="text-center m-8">
+          Keine Tagebucheinträge vorhanden. Füge welche hinzu!
+        </p> // Fallback
       )}
     </>
   );
