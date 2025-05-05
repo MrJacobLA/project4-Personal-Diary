@@ -12,7 +12,7 @@ function Modal({ diary, setDiary }) {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
-  console.log(title);
+  // console.log(title);
 
   const handleSave = () => {
     if (!date || !title.trim() || !image.trim() || !thoughts.trim()) {
@@ -56,7 +56,7 @@ function Modal({ diary, setDiary }) {
           <svg
             stroke="currentColor"
             fill="currentColor"
-            stroke-width="0"
+            strokeWidth="0"
             viewBox="0 0 24 24"
             className="text-5xl"
             height="1em"

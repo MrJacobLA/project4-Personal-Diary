@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import Modal from "../Modal";
 
-function home() {
+function Home() {
   const [diary, setDiary] = useState([]);
 
   useEffect(() => {
     const localStorageData = JSON.parse(localStorage.getItem("diary")) || [];
     setDiary(localStorageData);
   }, []);
-  console.log("diary", diary);
+  // console.log("diary", diary);
 
   const deleteEntry = (index) => {
     const updatedDiary = diary.filter((_, i) => i !== index); // Eintrag entfernen
@@ -58,4 +58,4 @@ function home() {
   );
 }
 //comment
-export default home;
+export default Home;
