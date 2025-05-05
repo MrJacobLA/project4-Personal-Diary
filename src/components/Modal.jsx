@@ -103,13 +103,15 @@ function Modal({ diary, setDiary }) {
               />
             </div>
             <div>
-              <input
+              <textarea
+                rows="4"
+                cols="40"
                 className=""
                 type="text"
                 placeholder="Write your thoughts..."
                 value={thoughts}
                 onChange={(e) => setThoughts(e.target.value)}
-              />
+              ></textarea>
             </div>
             {/* Cancel-button mit icon mit closModal-Methode*/}
             <button className="cancelBtn" onClick={closeModal}>

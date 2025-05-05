@@ -47,7 +47,9 @@ function home() {
           </div>
         </div>
       ) : (
-        <p>Keine Tagebucheinträge vorhanden. Füge welche hinzu!</p> // Fallback
+        <p className="text-center m-8">
+          Keine Tagebucheinträge vorhanden. Füge welche hinzu!
+        </p> // Fallback
       )}
     </>
   );
